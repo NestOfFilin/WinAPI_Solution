@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LitvinenkoNA_C++ProgrammingTechnologyWin32ApiApplication", "LitvinenkoNA_C++ProgrammingTechnologyWin32ApiApplication", "{A5E1E740-F150-498D-91E0-4CAE7EBC3230}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Listings", "Listings", "{3085A5E8-2051-4C5C-85AE-CDDC323F8D72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter1", "Chapter1", "{D50E3C3C-2F29-4B8C-826C-BF4A9A04997A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Listing_1_1", "LitvinenkoNA_C++ProgrammingTechnologyWin32ApiApplication\Listings\Chapter1\Listing_1_1\Listing_1_1.vcxproj", "{281995A6-6DAD-43B2-91A8-074ACD2416B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{281995A6-6DAD-43B2-91A8-074ACD2416B9}.Debug|x64.ActiveCfg = Debug|x64
+		{281995A6-6DAD-43B2-91A8-074ACD2416B9}.Debug|x64.Build.0 = Debug|x64
+		{281995A6-6DAD-43B2-91A8-074ACD2416B9}.Debug|x86.ActiveCfg = Debug|Win32
+		{281995A6-6DAD-43B2-91A8-074ACD2416B9}.Debug|x86.Build.0 = Debug|Win32
+		{281995A6-6DAD-43B2-91A8-074ACD2416B9}.Release|x64.ActiveCfg = Release|x64
+		{281995A6-6DAD-43B2-91A8-074ACD2416B9}.Release|x64.Build.0 = Release|x64
+		{281995A6-6DAD-43B2-91A8-074ACD2416B9}.Release|x86.ActiveCfg = Release|Win32
+		{281995A6-6DAD-43B2-91A8-074ACD2416B9}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3085A5E8-2051-4C5C-85AE-CDDC323F8D72} = {A5E1E740-F150-498D-91E0-4CAE7EBC3230}
+		{D50E3C3C-2F29-4B8C-826C-BF4A9A04997A} = {3085A5E8-2051-4C5C-85AE-CDDC323F8D72}
+		{281995A6-6DAD-43B2-91A8-074ACD2416B9} = {D50E3C3C-2F29-4B8C-826C-BF4A9A04997A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6DDFF599-1CC3-4C05-93F3-AB413430BD02}
+	EndGlobalSection
+EndGlobal
