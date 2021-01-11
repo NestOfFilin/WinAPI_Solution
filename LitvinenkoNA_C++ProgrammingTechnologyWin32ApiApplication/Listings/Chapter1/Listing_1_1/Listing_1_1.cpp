@@ -4,16 +4,18 @@
 #include <tchar.h>
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 TCHAR WinName[] = _T("MainFrame");
-int APIENTRY _tWinMain(HINSTANCE This, // Дескриптор текущего приложения
-	HINSTANCE Prev,                   // В современных системах всегда 0
-	LPTSTR cmd,                       // Командная строка
-	int mode)                         // Режим отображения окна
+// т.к. тут юникод, то главная функция называется wWinMain, а так _tWinMain
+int APIENTRY wWinMain(
+	_In_ HINSTANCE hInstance,					// Дескриптор текущего приложения
+	_In_opt_ HINSTANCE hPrevInstance,			// В современных системах всегда 0
+	_In_ LPWSTR lpCmdLine,						// Командная строка
+	_In_ int nShowCmd)							// Режим отображения окна
 {
 	HWND hWnd;              // Дескриптор главного окна программы
 	MSG msg;                // Структура для хранения сообщения
 	WNDCLASS wc;  // Класс окна
 // Определение класса окна
-	wc.hInstance = This;
+	wc.hInstance = hInstance;
 	wc.lpszClassName = WinName;                // Имя класса окна
 	wc.lpfnWndProc = WndProc;                  // Функция окна
 	wc.style = CS_HREDRAW | CS_VREDRAW;       // Стиль окна
@@ -32,14 +34,12 @@ int APIENTRY _tWinMain(HINSTANCE This, // Дескриптор текущего приложения
 		CW_USEDEFAULT, // x
 		CW_USEDEFAULT, // y   Размеры окна
 		CW_USEDEFAULT, // width
-
-
 		CW_USEDEFAULT, // Height
 		HWND_DESKTOP, // Дескриптор родительского окна
 		NULL,         // Нет меню
-		This,         // Дескриптор приложения
+		hInstance,         // Дескриптор приложения
 		NULL);        // Дополнительной информации нет
-	ShowWindow(hWnd, mode); // Показать окно
+	ShowWindow(hWnd, nShowCmd); // Показать окно
 // Цикл обработки сообщений
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
