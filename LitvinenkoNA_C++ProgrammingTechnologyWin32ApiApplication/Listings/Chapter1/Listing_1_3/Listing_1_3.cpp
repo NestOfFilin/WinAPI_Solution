@@ -8,7 +8,7 @@
 typedef std::basic_string<TCHAR, std::char_traits<TCHAR>,
     std::allocator<TCHAR> > String;
 
-#define MAX_LOADSTRING 100
+const int MAX_LOADSTRING = 100;
 
 // Global Variables:
 HINSTANCE hInst;                                // current instance
@@ -19,7 +19,6 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
-INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,

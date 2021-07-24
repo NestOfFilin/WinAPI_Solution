@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WindowsProjectOnVS2019", "L
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Listing_1_3", "LitvinenkoNA_C++ProgrammingTechnologyWin32ApiApplication\Listings\Chapter1\Listing_1_3\Listing_1_3.vcxproj", "{4E78D661-0B32-4189-AA1E-490DB702E1B8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Listing_1_4", "LitvinenkoNA_C++ProgrammingTechnologyWin32ApiApplication\Listings\Chapter1\Listing_1_4\Listing_1_4.vcxproj", "{FBC6FD95-67DE-4561-B8C5-0A7BF9202D3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -47,6 +49,14 @@ Global
 		{4E78D661-0B32-4189-AA1E-490DB702E1B8}.Release|x64.Build.0 = Release|x64
 		{4E78D661-0B32-4189-AA1E-490DB702E1B8}.Release|x86.ActiveCfg = Release|Win32
 		{4E78D661-0B32-4189-AA1E-490DB702E1B8}.Release|x86.Build.0 = Release|Win32
+		{FBC6FD95-67DE-4561-B8C5-0A7BF9202D3E}.Debug|x64.ActiveCfg = Debug|x64
+		{FBC6FD95-67DE-4561-B8C5-0A7BF9202D3E}.Debug|x64.Build.0 = Debug|x64
+		{FBC6FD95-67DE-4561-B8C5-0A7BF9202D3E}.Debug|x86.ActiveCfg = Debug|Win32
+		{FBC6FD95-67DE-4561-B8C5-0A7BF9202D3E}.Debug|x86.Build.0 = Debug|Win32
+		{FBC6FD95-67DE-4561-B8C5-0A7BF9202D3E}.Release|x64.ActiveCfg = Release|x64
+		{FBC6FD95-67DE-4561-B8C5-0A7BF9202D3E}.Release|x64.Build.0 = Release|x64
+		{FBC6FD95-67DE-4561-B8C5-0A7BF9202D3E}.Release|x86.ActiveCfg = Release|Win32
+		{FBC6FD95-67DE-4561-B8C5-0A7BF9202D3E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +67,7 @@ Global
 		{281995A6-6DAD-43B2-91A8-074ACD2416B9} = {D50E3C3C-2F29-4B8C-826C-BF4A9A04997A}
 		{5AB6D4B3-F473-4BB0-A238-3CE624E637C2} = {3085A5E8-2051-4C5C-85AE-CDDC323F8D72}
 		{4E78D661-0B32-4189-AA1E-490DB702E1B8} = {D50E3C3C-2F29-4B8C-826C-BF4A9A04997A}
+		{FBC6FD95-67DE-4561-B8C5-0A7BF9202D3E} = {D50E3C3C-2F29-4B8C-826C-BF4A9A04997A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6DDFF599-1CC3-4C05-93F3-AB413430BD02}
