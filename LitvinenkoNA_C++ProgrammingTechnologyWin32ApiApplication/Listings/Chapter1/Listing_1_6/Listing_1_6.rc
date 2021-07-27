@@ -43,7 +43,7 @@ IDI_SMALL               ICON                    "../Resources/small.ico"
 
 1 TEXTINCLUDE
 BEGIN
-"resource.h\0"
+"Resource.h\0"
 END
 
 2 TEXTINCLUDE
