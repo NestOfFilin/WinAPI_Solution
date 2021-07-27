@@ -1,4 +1,4 @@
-#include "LIsting_1_4.h"
+#include "Listing_1_4.h"
 
 const int MAX_LOADSTRING = 100;
 
@@ -8,6 +8,12 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
 const TCHAR* r_str = L"Нажата правая кнопка мыши";
 const TCHAR* l_str = L"Нажата левая кнопка мыши";
+const TCHAR* r_s_str = L"Нажата правая кнопка мыши + shift";
+const TCHAR* l_s_str = L"Нажата левая кнопка мыши + shift";
+const TCHAR* r_c_str = L"Нажата правая кнопка мыши + ctrl";
+const TCHAR* l_c_str = L"Нажата левая кнопка мыши + ctrl";
+const TCHAR* r_a_str = L"Нажата правая кнопка мыши + alt";
+const TCHAR* l_a_str = L"Нажата левая кнопка мыши + alt";
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message,
     WPARAM wParam, LPARAM lParam)
@@ -23,9 +29,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message,
         const int y = static_cast<int>((i64LParam >> 16) & 0xffff);
         hdc = GetDC(hWnd);
         const bool isLButton = message == WM_LBUTTONDOWN;
-        TextOutW(hdc, x, y, 
-            isLButton ? l_str : r_str, 
-            static_cast<int>(_tcsclen(isLButton ? l_str : r_str)));
+        if (MK_SHIFT & wParam)
+            TextOutW(hdc, x, y, isLButton ? l_s_str : r_s_str,
+                static_cast<int>(_tcsclen(isLButton ? l_s_str : r_s_str)));
+        else if (MK_CONTROL & wParam)
+            TextOutW(hdc, x, y, isLButton ? l_c_str : r_c_str,
+                static_cast<int>(_tcsclen(isLButton ? l_c_str : r_c_str)));
+        else if (MK_ALT & wParam)
+            TextOutW(hdc, x, y, isLButton ? l_a_str : r_a_str,
+                static_cast<int>(_tcsclen(isLButton ? l_a_str : r_a_str)));
+        else
+            TextOutW(hdc, x, y, isLButton ? l_str : r_str, 
+                static_cast<int>(_tcsclen(isLButton ? l_str : r_str)));
         ReleaseDC(hWnd, hdc);
         break;
     }
