@@ -29,6 +29,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Listing_1_9", "LitvinenkoNA
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Listing_1_10", "LitvinenkoNA_C++ProgrammingWin32ApiApp\Listings\Chapter1\Listing_1_10\Listing_1_10.vcxproj", "{15B40C62-35A4-453D-B5A3-FBD6294146F5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Listing_1_11", "LitvinenkoNA_C++ProgrammingWin32ApiApp\Listings\Chapter1\Listing_1_11\Listing_1_11.vcxproj", "{CCC94A7E-EE32-4B7C-80F0-D4531B777A8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -117,6 +119,14 @@ Global
 		{15B40C62-35A4-453D-B5A3-FBD6294146F5}.Release|x64.Build.0 = Release|x64
 		{15B40C62-35A4-453D-B5A3-FBD6294146F5}.Release|x86.ActiveCfg = Release|Win32
 		{15B40C62-35A4-453D-B5A3-FBD6294146F5}.Release|x86.Build.0 = Release|Win32
+		{CCC94A7E-EE32-4B7C-80F0-D4531B777A8C}.Debug|x64.ActiveCfg = Debug|x64
+		{CCC94A7E-EE32-4B7C-80F0-D4531B777A8C}.Debug|x64.Build.0 = Debug|x64
+		{CCC94A7E-EE32-4B7C-80F0-D4531B777A8C}.Debug|x86.ActiveCfg = Debug|Win32
+		{CCC94A7E-EE32-4B7C-80F0-D4531B777A8C}.Debug|x86.Build.0 = Debug|Win32
+		{CCC94A7E-EE32-4B7C-80F0-D4531B777A8C}.Release|x64.ActiveCfg = Release|x64
+		{CCC94A7E-EE32-4B7C-80F0-D4531B777A8C}.Release|x64.Build.0 = Release|x64
+		{CCC94A7E-EE32-4B7C-80F0-D4531B777A8C}.Release|x86.ActiveCfg = Release|Win32
+		{CCC94A7E-EE32-4B7C-80F0-D4531B777A8C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -134,6 +144,7 @@ Global
 		{F0CEDA61-C811-47EC-BB62-941950A5C8AF} = {D50E3C3C-2F29-4B8C-826C-BF4A9A04997A}
 		{F4EF9FC6-E5E5-43D2-ACC1-EA5E31EB537B} = {D50E3C3C-2F29-4B8C-826C-BF4A9A04997A}
 		{15B40C62-35A4-453D-B5A3-FBD6294146F5} = {D50E3C3C-2F29-4B8C-826C-BF4A9A04997A}
+		{CCC94A7E-EE32-4B7C-80F0-D4531B777A8C} = {D50E3C3C-2F29-4B8C-826C-BF4A9A04997A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6DDFF599-1CC3-4C05-93F3-AB413430BD02}
