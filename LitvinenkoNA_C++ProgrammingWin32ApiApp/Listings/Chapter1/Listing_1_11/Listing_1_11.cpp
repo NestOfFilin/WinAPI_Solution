@@ -56,6 +56,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message,
     }
     case WM_DESTROY:
     {
+        DeleteObject(hSolidBrush);
         PostQuitMessage(0);
         break;
     }

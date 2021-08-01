@@ -1,4 +1,4 @@
-#include "Listing_1_10.h"
+#include "Listing_1_13.h"
 
 const int MAX_LOADSTRING = 100;
 
@@ -6,62 +6,52 @@ HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
-const int hHatchBrushsSize = 6;
-HBRUSH hSolidBrush, hHatchBrushs[hHatchBrushsSize];
-const int aHatchBrushIndexes[] = {
-    HS_BDIAGONAL,
-    HS_CROSS,
-    HS_DIAGCROSS,
-    HS_FDIAGONAL,
-    HS_HORIZONTAL,
-    HS_VERTICAL
-};
-const TCHAR* str = L"сплошное заполнение";
-const TCHAR* aStr[] = { 
-    L"HS_BDIAGONAL Ч слева направо и снизу вверх",
-    L"HS_CROSS Ч горизонтальна€ и вертикальна€ штриховка",
-    L"HS_DIAGCROSS Ч под углом в 45 градусов",
-    L"HS_FDIAGONAL Ч слева направо и сверху вниз",
-    L"HS_HORIZONTAL Ч горизонтальна€ штриховка",
-    L"HS_VERTICAL Ч вертикальна€ штриховка"
-};
-const COLORREF lHatchBrushColor = RGB(0, 128, 0);
+const TCHAR* text = L"“екст дл€ вывода в окне";
+const TCHAR* strDecr = L"\
+tmHeight = %d\n\
+tmInternalLeading = %d\n\
+tmExternalLeading = %d\n\
+tmAscent = %d\n\
+tmDescent = %d\n";
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message,
     WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-    case WM_CREATE:
-    {
-        hSolidBrush = CreateSolidBrush(RGB(255, 255, 0));
-        for (int i = 0; i < hHatchBrushsSize; i++)
-            hHatchBrushs[i] = CreateHatchBrush(aHatchBrushIndexes[i], lHatchBrushColor);
-        break;
-    }
     case WM_PAINT:
     {
         PAINTSTRUCT ps;
         HDC hdc = BeginPaint(hWnd, &ps);
-        
-        SelectObject(hdc, hSolidBrush);
-        Ellipse(hdc, 1, 1, 40, 40);
-        TextOutW(hdc, 50, 11, str, static_cast<int>(_tcsclen(str)));
-        for (int i = 0; i < hHatchBrushsSize; i++)
-        {
-            SelectObject(hdc, hHatchBrushs[i]);
-            Rectangle(hdc, 1, 41 + i * 40, 40, 80 + i * 40);
-            TextOutW(hdc, 50, 51 + i * 40, aStr[i], static_cast<int>(_tcsclen(aStr[i])));
-        }
+
+        SetMapMode(hdc, MM_ANISOTROPIC);
+        SetBkColor(hdc, RGB(255, 255, 0)); // ∆Єлтый фон
+        SetTextColor(hdc, RGB(0, 0, 128)); // —иний шрифт
+        TextOutW(hdc, 0, 0, text, static_cast<int>(_tcsclen(text)));
+        SetBkMode(hdc, TRANSPARENT); // ѕрозрачный фон
+        SelectObject(hdc, GetStockObject(ANSI_VAR_FONT));
+
+        TEXTMETRIC tm;
+        TCHAR str[256];
+        GetTextMetricsW(hdc, &tm);
+        swprintf_s(str, strDecr, tm.tmHeight, tm.tmInternalLeading, tm.tmExternalLeading,
+            tm.tmAscent, tm.tmDescent);
+
+        RECT rt;
+        SetRect(&rt, 0, 20, 150, 100);
+        DrawTextW(hdc, str, static_cast<int>(_tcslen(str)), &rt, DT_LEFT);
+        SIZE size;
+        GetTextExtentPoint32W(hdc, text, static_cast<int>(_tcsclen(text)), &size);
+        swprintf_s(str, L"Ўирина строки = %d\n¬ысота строки = %d",
+            size.cx, size.cy);
+        SetRect(&rt, 0, 100, 150, 150);
+        DrawTextW(hdc, str, static_cast<int>(_tcslen(str)), &rt, DT_LEFT);
 
         EndPaint(hWnd, &ps);
         break;
     }
     case WM_DESTROY:
     {
-        DeleteObject(hSolidBrush);
-        for (int i = 0; i < hHatchBrushsSize; i++)
-            DeleteObject(hHatchBrushs[i]);
         PostQuitMessage(0);
         break;
     }
@@ -82,10 +72,10 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.cbClsExtra = 0;
     wcex.cbWndExtra = 0;
     wcex.hInstance = hInstance;
-    wcex.hIcon = LoadIconW(hInstance, MAKEINTRESOURCE(IDI_LISTING110));
+    wcex.hIcon = LoadIconW(hInstance, MAKEINTRESOURCE(IDI_LISTING113));
     wcex.hCursor = LoadCursorW(nullptr, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-    wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_LISTING110);
+    wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_LISTING113);
     wcex.lpszClassName = szWindowClass;
     wcex.hIconSm = LoadIconW(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -122,7 +112,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_LISTING110, szWindowClass, MAX_LOADSTRING);
+    LoadStringW(hInstance, IDC_LISTING113, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
     // Perform application initialization:
@@ -131,7 +121,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
-    HACCEL hAccelTable = LoadAcceleratorsW(hInstance, MAKEINTRESOURCE(IDC_LISTING110));
+    HACCEL hAccelTable = LoadAcceleratorsW(hInstance, MAKEINTRESOURCE(IDC_LISTING113));
 
     MSG msg;
 
