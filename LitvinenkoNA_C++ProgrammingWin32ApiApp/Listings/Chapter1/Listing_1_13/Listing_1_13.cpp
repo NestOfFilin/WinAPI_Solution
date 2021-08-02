@@ -6,13 +6,20 @@ HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
-const TCHAR* text = L"Текст для вывода в окне";
+const TCHAR* strText = L"Текст для вывода в окне";
+const int strTextSize = static_cast<int>(_tcsclen(strText));
+
 const TCHAR* strDecr = L"\
 tmHeight = %d\n\
 tmInternalLeading = %d\n\
 tmExternalLeading = %d\n\
 tmAscent = %d\n\
 tmDescent = %d\n";
+
+const TCHAR* strWiHe = L"Ширина строки = %d\nВысота строки = %d";
+
+const COLORREF cYellow = RGB(255, 255, 0);
+const COLORREF cBlue = RGB(0, 0, 128);
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message,
     WPARAM wParam, LPARAM lParam)
@@ -25,9 +32,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message,
         HDC hdc = BeginPaint(hWnd, &ps);
 
         SetMapMode(hdc, MM_ANISOTROPIC);
-        SetBkColor(hdc, RGB(255, 255, 0)); // Жёлтый фон
-        SetTextColor(hdc, RGB(0, 0, 128)); // Синий шрифт
-        TextOutW(hdc, 0, 0, text, static_cast<int>(_tcsclen(text)));
+        SetBkColor(hdc, cYellow); // Жёлтый фон
+        SetTextColor(hdc, cBlue); // Синий шрифт
+        TextOutW(hdc, 0, 0, strText, strTextSize);
         SetBkMode(hdc, TRANSPARENT); // Прозрачный фон
         SelectObject(hdc, GetStockObject(ANSI_VAR_FONT));
 
@@ -36,16 +43,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message,
         GetTextMetricsW(hdc, &tm);
         swprintf_s(str, strDecr, tm.tmHeight, tm.tmInternalLeading, tm.tmExternalLeading,
             tm.tmAscent, tm.tmDescent);
+        const int strSize = static_cast<int>(_tcslen(str));
 
         RECT rt;
         SetRect(&rt, 0, 20, 150, 100);
-        DrawTextW(hdc, str, static_cast<int>(_tcslen(str)), &rt, DT_LEFT);
+        DrawTextW(hdc, str, strSize, &rt, DT_LEFT);
         SIZE size;
-        GetTextExtentPoint32W(hdc, text, static_cast<int>(_tcsclen(text)), &size);
-        swprintf_s(str, L"Ширина строки = %d\nВысота строки = %d",
-            size.cx, size.cy);
+        GetTextExtentPoint32W(hdc, strText, strTextSize, &size);
+        swprintf_s(str, strWiHe, size.cx, size.cy);
         SetRect(&rt, 0, 100, 150, 150);
-        DrawTextW(hdc, str, static_cast<int>(_tcslen(str)), &rt, DT_LEFT);
+        DrawTextW(hdc, str, strSize, &rt, DT_LEFT);
 
         EndPaint(hWnd, &ps);
         break;
