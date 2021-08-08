@@ -1,4 +1,4 @@
-#include "Listing_1_12.h"
+#include "Exercise_1_1.h"
 
 const int MAX_LOADSTRING = 100;
 
@@ -6,27 +6,56 @@ HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
-HBRUSH hSolidBrush;
-const int pointsCount = 5;
-const POINT points[pointsCount] = { {0, 100}, {-59, -81}, {95, 31}, {-95, 31}, {59, -81} };
-const int WIDTH = 400;
-const int HEIGHT = 300;
+RECT rect = { -20, 10, 20, -10 };
+
+const TCHAR* sMsgBoxTitle = L"Глава 1 Задание 1";
+const TCHAR* sMsgBoxDesc = L"Программа строит прямоугольник в центре окна.\n\
+При нажатии на левую кнпку мыши его размеры уменьшаются, а при нажатии на правую кнопку — увеличиваются на 10 пикселов.";
+
 int sx, sy;
+const int dRectSize = 10;
+
+HBRUSH hRectBrush;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message,
     WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
+    case WM_CREATE:
+    {
+        MessageBoxW(hWnd, sMsgBoxDesc, sMsgBoxTitle, MB_OK | MB_ICONEXCLAMATION);
+        
+        hRectBrush = CreateSolidBrush(RGB(128, 0, 128));
+        break;
+    }
     case WM_SIZE:
     {
         sx = LOWORD(lParam);
         sy = HIWORD(lParam);
         break;
     }
-    case WM_CREATE:
+    case WM_RBUTTONUP:
     {
-        hSolidBrush = CreateSolidBrush(RGB(255, 0, 0));
+        rect.left -= dRectSize;
+        rect.top += dRectSize;
+
+        rect.right += dRectSize;
+        rect.bottom -= dRectSize;
+        InvalidateRect(hWnd, nullptr, TRUE);
+        break;
+    }
+    case WM_LBUTTONUP:
+    {
+        if ((rect.top - rect.bottom) - dRectSize > 10L)
+        {
+            rect.left += dRectSize;
+            rect.top -= dRectSize;
+
+            rect.right -= dRectSize;
+            rect.bottom += dRectSize;
+        }
+        InvalidateRect(hWnd, nullptr, TRUE);
         break;
     }
     case WM_PAINT:
@@ -35,24 +64,20 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message,
         HDC hdc = BeginPaint(hWnd, &ps);
 
         SetMapMode(hdc, MM_ANISOTROPIC);
-        SetWindowExtEx(hdc, WIDTH, -HEIGHT, nullptr);
+        SetWindowExtEx(hdc, sx, -sy, nullptr);
         SetViewportExtEx(hdc, sx, sy, nullptr);
         SetViewportOrgEx(hdc, sx / 2, sy / 2, nullptr);
 
-        BeginPath(hdc);
-        Polyline(hdc, points, pointsCount);
-        CloseFigure(hdc);
-        EndPath(hdc);
-        SelectObject(hdc, hSolidBrush);
-        SetPolyFillMode(hdc, WINDING);
-        FillPath(hdc);
+        HRGN hRect = CreateRectRgnIndirect(&rect);
+        FillRgn(hdc, hRect, hRectBrush);
+        DeleteObject(hRect);
 
         EndPaint(hWnd, &ps);
         break;
     }
     case WM_DESTROY:
     {
-        DeleteObject(hSolidBrush);
+        DeleteObject(hRectBrush);
         PostQuitMessage(0);
         break;
     }
@@ -73,10 +98,10 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.cbClsExtra = 0;
     wcex.cbWndExtra = 0;
     wcex.hInstance = hInstance;
-    wcex.hIcon = LoadIconW(hInstance, MAKEINTRESOURCE(IDI_LISTING112));
+    wcex.hIcon = LoadIconW(hInstance, MAKEINTRESOURCE(IDI_EXERCISE11));
     wcex.hCursor = LoadCursorW(nullptr, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-    wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_LISTING112);
+    wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_EXERCISE11);
     wcex.lpszClassName = szWindowClass;
     wcex.hIconSm = LoadIconW(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -113,7 +138,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_LISTING112, szWindowClass, MAX_LOADSTRING);
+    LoadStringW(hInstance, IDC_EXERCISE11, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
     // Perform application initialization:
@@ -122,7 +147,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
-    HACCEL hAccelTable = LoadAcceleratorsW(hInstance, MAKEINTRESOURCE(IDC_LISTING112));
+    HACCEL hAccelTable = LoadAcceleratorsW(hInstance, MAKEINTRESOURCE(IDC_EXERCISE11));
 
     MSG msg;
 
