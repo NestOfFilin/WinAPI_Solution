@@ -1,4 +1,4 @@
-#include "Exercise_1_1.h"
+#include "Exercise_1_2.h"
 
 const int MAX_LOADSTRING = 100;
 
@@ -10,11 +10,14 @@ RECT rect = { -20, 10, 20, -10 };
 
 const TCHAR* sMsgBoxTitle = L"Глава 1 Задание 1";
 const TCHAR* sMsgBoxDesc = L"Программа строит прямоугольник в центре окна.\n\
-При нажатии на левую кнпку мыши его размеры уменьшаются, а при нажатии на правую кнопку — увеличиваются на 10 пикселов.";
+Размеры прямоугольника изменяются автоматически каждую секунду. \n\
+При нажатии на левую кнпку мыши его размеры станут уменьшаться, а при нажатии на правую кнопку — увеличиваться на 10 пикселов.";
 
 int sx, sy;
+bool bIncreaseMode = true;
 const int dRectSize = 10;
 
+const int timerId = 1;
 HBRUSH hRectBrush;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message,
@@ -25,7 +28,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message,
     case WM_CREATE:
     {
         MessageBoxW(hWnd, sMsgBoxDesc, sMsgBoxTitle, MB_OK | MB_ICONEXCLAMATION);
-        
+
+        SetTimer(hWnd, timerId, 1000, nullptr);
         hRectBrush = CreateSolidBrush(RGB(128, 0, 128));
         break;
     }
@@ -37,7 +41,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message,
     }
     case WM_RBUTTONUP:
     {
-        if ((rect.top - rect.bottom) + dRectSize < sy)
+        bIncreaseMode = true;
+        break;
+    }
+    case WM_LBUTTONUP:
+    {
+        bIncreaseMode = false;
+        break;
+    }
+    case WM_TIMER:
+    {
+        if (bIncreaseMode && ((rect.top - rect.bottom) + dRectSize < sy))
         {
             rect.left -= dRectSize;
             rect.top += dRectSize;
@@ -46,11 +60,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message,
             rect.bottom -= dRectSize;
             InvalidateRect(hWnd, nullptr, TRUE);
         }
-        break;
-    }
-    case WM_LBUTTONUP:
-    {
-        if ((rect.top - rect.bottom) - dRectSize > 10L)
+        else if (!bIncreaseMode && ((rect.top - rect.bottom) - dRectSize > 10L))
         {
             rect.left += dRectSize;
             rect.top -= dRectSize;
@@ -81,6 +91,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message,
     case WM_DESTROY:
     {
         DeleteObject(hRectBrush);
+        KillTimer(hWnd, timerId);
         PostQuitMessage(0);
         break;
     }
@@ -101,10 +112,10 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.cbClsExtra = 0;
     wcex.cbWndExtra = 0;
     wcex.hInstance = hInstance;
-    wcex.hIcon = LoadIconW(hInstance, MAKEINTRESOURCE(IDI_EXERCISE11));
+    wcex.hIcon = LoadIconW(hInstance, MAKEINTRESOURCE(IDI_EXERCISE12));
     wcex.hCursor = LoadCursorW(nullptr, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-    wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_EXERCISE11);
+    wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_EXERCISE12);
     wcex.lpszClassName = szWindowClass;
     wcex.hIconSm = LoadIconW(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -141,7 +152,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_EXERCISE11, szWindowClass, MAX_LOADSTRING);
+    LoadStringW(hInstance, IDC_EXERCISE12, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
     // Perform application initialization:
@@ -150,7 +161,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
-    HACCEL hAccelTable = LoadAcceleratorsW(hInstance, MAKEINTRESOURCE(IDC_EXERCISE11));
+    HACCEL hAccelTable = LoadAcceleratorsW(hInstance, MAKEINTRESOURCE(IDC_EXERCISE12));
 
     MSG msg;
 
