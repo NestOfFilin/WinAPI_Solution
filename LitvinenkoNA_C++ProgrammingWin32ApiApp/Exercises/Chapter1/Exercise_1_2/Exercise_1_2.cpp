@@ -8,7 +8,7 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
 RECT rect = { -20, 10, 20, -10 };
 
-const TCHAR* sMsgBoxTitle = L"Глава 1 Задание 1";
+const TCHAR* sMsgBoxTitle = L"Глава 1 Задание 2";
 const TCHAR* sMsgBoxDesc = L"Программа строит прямоугольник в центре окна.\n\
 Размеры прямоугольника изменяются автоматически каждую секунду. \n\
 При нажатии на левую кнпку мыши его размеры станут уменьшаться, а при нажатии на правую кнопку — увеличиваться на 10 пикселов.";
@@ -27,7 +27,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message,
     {
     case WM_CREATE:
     {
-        MessageBoxW(hWnd, sMsgBoxDesc, sMsgBoxTitle, MB_OK | MB_ICONEXCLAMATION);
+        MessageBoxW(hWnd, sMsgBoxDesc, sMsgBoxTitle, MB_OK | MB_ICONQUESTION);
 
         SetTimer(hWnd, timerId, 1000, nullptr);
         hRectBrush = CreateSolidBrush(RGB(128, 0, 128));

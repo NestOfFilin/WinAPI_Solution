@@ -24,7 +24,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message,
     {
     case WM_CREATE:
     {
-        MessageBoxW(hWnd, sMsgBoxDesc, sMsgBoxTitle, MB_OK | MB_ICONEXCLAMATION);
+        MessageBoxW(hWnd, sMsgBoxDesc, sMsgBoxTitle, MB_OK | MB_ICONQUESTION);
         
         hRectBrush = CreateSolidBrush(RGB(128, 0, 128));
         break;
