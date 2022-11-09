@@ -70,25 +70,26 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <Import Project="..\..\..\BulidPath.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(WinAPI_Solution_OutputDir)\$(Configuration)_$(Platform)\LitvinenkoNA_C++ProgrammingWin32ApiApp\Chapter1\Listing_1_2\</OutDir>
-    <IntDir>$(WinAPI_Solution_OutputDir)\$(Configuration)_$(Platform)_Intermediate\LitvinenkoNA_C++ProgrammingWin32ApiApp\Chapter1\Listing_1_2\</IntDir>
+    <OutDir>..\..\..\..\$(BuildPath)\$(Configuration)_$(Platform)\LitvinenkoNA_C++ProgrammingWin32ApiApp\Chapter1\Listing_1_2\</OutDir>
+    <IntDir>..\..\..\..\$(BuildPath)\$(Configuration)_$(Platform)_Intermediate\LitvinenkoNA_C++ProgrammingWin32ApiApp\Chapter1\Listing_1_2\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(WinAPI_Solution_OutputDir)\$(Configuration)_$(Platform)\LitvinenkoNA_C++ProgrammingWin32ApiApp\Chapter1\Listing_1_2\</OutDir>
-    <IntDir>$(WinAPI_Solution_OutputDir)\$(Configuration)_$(Platform)_Intermediate\LitvinenkoNA_C++ProgrammingWin32ApiApp\Chapter1\Listing_1_2\</IntDir>
+    <OutDir>..\..\..\..\$(BuildPath)\$(Configuration)_$(Platform)\LitvinenkoNA_C++ProgrammingWin32ApiApp\Chapter1\Listing_1_2\</OutDir>
+    <IntDir>..\..\..\..\$(BuildPath)\$(Configuration)_$(Platform)_Intermediate\LitvinenkoNA_C++ProgrammingWin32ApiApp\Chapter1\Listing_1_2\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(WinAPI_Solution_OutputDir)\$(Configuration)_$(Platform)\LitvinenkoNA_C++ProgrammingWin32ApiApp\Chapter1\Listing_1_2\</OutDir>
-    <IntDir>$(WinAPI_Solution_OutputDir)\$(Configuration)_$(Platform)_Intermediate\LitvinenkoNA_C++ProgrammingWin32ApiApp\Chapter1\Listing_1_2\</IntDir>
+    <OutDir>..\..\..\..\$(BuildPath)\$(Configuration)_$(Platform)\LitvinenkoNA_C++ProgrammingWin32ApiApp\Chapter1\Listing_1_2\</OutDir>
+    <IntDir>..\..\..\..\$(BuildPath)\$(Configuration)_$(Platform)_Intermediate\LitvinenkoNA_C++ProgrammingWin32ApiApp\Chapter1\Listing_1_2\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(WinAPI_Solution_OutputDir)\$(Configuration)_$(Platform)\LitvinenkoNA_C++ProgrammingWin32ApiApp\Chapter1\Listing_1_2\</OutDir>
-    <IntDir>$(WinAPI_Solution_OutputDir)\$(Configuration)_$(Platform)_Intermediate\LitvinenkoNA_C++ProgrammingWin32ApiApp\Chapter1\Listing_1_2\</IntDir>
+    <OutDir>..\..\..\..\$(BuildPath)\$(Configuration)_$(Platform)\LitvinenkoNA_C++ProgrammingWin32ApiApp\Chapter1\Listing_1_2\</OutDir>
+    <IntDir>..\..\..\..\$(BuildPath)\$(Configuration)_$(Platform)_Intermediate\LitvinenkoNA_C++ProgrammingWin32ApiApp\Chapter1\Listing_1_2\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
