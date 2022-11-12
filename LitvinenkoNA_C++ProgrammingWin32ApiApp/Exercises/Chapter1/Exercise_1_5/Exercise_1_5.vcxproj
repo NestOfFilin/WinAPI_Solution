@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{d6076054-597e-4652-ab97-1f2e280d8c09}</ProjectGuid>
+    <RootNamespace>Exercise15</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="..\PartName.props" />
+  <Import Project="..\..\..\Project.Temp.props" />
+  <ItemGroup>
+    <ClCompile Include="Exercise_1_5.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Exercise_1_5.h" />
+    <ClInclude Include="Resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Exercise_1_5.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\holodos.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
